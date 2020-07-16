@@ -7,8 +7,6 @@ package com.javarush.task.task14.task1416;
 5. Подумай, какой класс должен реализовать интерфейс Walkable и добавить интерфейс этому классу.
 6. Подумай, какое животное еще не умеет плавать и добавить ему интерфейс Swimable.
 
-
-Требования:
 1. Косатка(Orca) является животным океана(потомком OceanAnimal) и умеет плавать(поддерживает интерфейс Swimmable).
 2. Кит(Whale) является животным океана(потомком OceanAnimal) и умеет плавать(поддерживает интерфейс Swimmable).
 3. Выдра(Otter) умеет ходить(поддерживает интерфейс Walkable) и плавать(поддерживает интерфейс Swimmable).
@@ -38,7 +36,7 @@ public class Solution {
         void swim();
     }
 
-    static abstract class OceanAnimal {
+    static abstract class OceanAnimal implements Swimmable{
         public void swim() {
             OceanAnimal currentAnimal = (OceanAnimal) getCurrentAnimal();
             currentAnimal.displaySwim();
@@ -51,14 +49,31 @@ public class Solution {
         abstract Swimmable getCurrentAnimal();
     }
 
-    static class Orca {
+    static class Orca extends OceanAnimal implements Swimmable{
+        @Override
+        Swimmable getCurrentAnimal() {
+            return this;
+        }
     }
 
-    static class Whale {
+    static class Whale extends OceanAnimal implements Swimmable{
 
+        @Override
+        Swimmable getCurrentAnimal() {
+            return this;
+        }
     }
 
-    static class Otter {
+    static class Otter implements Walkable, Swimmable{
 
+        @Override
+        public void walk() {
+
+        }
+
+        @Override
+        public void swim() {
+
+        }
     }
 }

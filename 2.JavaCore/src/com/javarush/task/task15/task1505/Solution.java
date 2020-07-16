@@ -3,25 +3,26 @@ package com.javarush.task.task15.task1505;
 import java.util.ArrayList;
 import java.util.List;
 
-/* Исправь метод containsBones и всю связанную с ним логику так, чтобы:
+/*
+Исправь метод containsBones и всю связанную с ним логику так, чтобы:
 1. Поведение программы осталось прежним.
 2. Метод containsBones должен возвращать тип Object и значение "Yes" вместо true, "No" вместо false
 
 
 Требования:
-1. Метод containsBones в классе BodyPart должен иметь тип возвращаемого значения Object.
+1. Метод containsBones в классе BodyPart должен иметь тип возвращаемого значения Object.!
 2. Класс Finger должен быть потомком класса BodyPart.!
-3. Метод containsBones в классе Finger должен иметь тип возвращаемого значения Object.
-4. Метод containsBones в классе BodyPart должен возвращать строку "Yes".
-5. Метод containsBones в классе Finger должен возвращать строку "Yes", если метод containsBones в классе BodyPart возвращает
-"Yes" и флаг isArtificial равен false, если приведенное условие не выполняется - вернуть "No".
-6. Метод toString в классе BodyPart должен возвращать строку формата "name(имя части тела) содержит кости", если метод containsBones возвращает
-"Yes" для этой части тела, а если "No", то строку формата "name(имя части тела) не содержит кости".
+3. Метод containsBones в классе Finger должен иметь тип возвращаемого значения Object.1
+4. Метод containsBones в классе BodyPart должен возвращать строку "Yes".!
+5. Метод containsBones в классе Finger должен возвращать строку "Yes", если метод containsBones в классе BodyPart!
+ возвращает "Yes" и флаг isArtificial равен false, если приведенное условие не выполняется - вернуть "No".
+6. Метод toString в классе BodyPart должен возвращать строку формата "name(имя части тела) содержит кости", если метод
+containsBones возвращает "Yes" для этой части тела, а если "No", то строку формата "name(имя части тела) не содержит кости".
 */
 
 public class Solution {
     public static interface LivingPart {
-        boolean containsBones();
+        Object containsBones();
     }
 
     public static class BodyPart implements LivingPart {
@@ -31,12 +32,12 @@ public class Solution {
             this.name = name;
         }
 
-        public boolean containsBones() {
-            return Object;
+        public Object containsBones() {
+            return "Yes";
         }
 
         public String toString() {
-            return containsBones() ? name + " содержит кости" : name + " не содержит кости";
+            return containsBones().equals("Yes") ? name + " содержит кости" : name + " не содержит кости";
         }
     }
 
@@ -48,8 +49,8 @@ public class Solution {
             this.isArtificial = isArtificial;
         }
 
-        public boolean containsBones() {
-            return super.containsBones() && !isArtificial;
+        public Object containsBones() {
+            return super.containsBones().equals("Yes") && !isArtificial ? "Yes" : "No";
         }
     }
 

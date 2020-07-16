@@ -3,13 +3,10 @@ package com.javarush.task.task15.task1526;
 /* 
 Дебаг, дебаг, и еще раз дебаг
 Программа выводит 0 9, а должна 6 9. Найди одну! ошибку и исправь.
-
 Используй дебаг. Для этого поставь breakpoint-ы(Ctrl+F8), потом зайди в меню Run -> Debug.
 F9 - выполнение кода до следующего breakpoint-а
 F8 - переход к следующей строке кода
 
-
-Требования:
 1. Программа должна выводить данные на экран.
 2. Вывод на экран должен соответствовать условию задачи.
 3. Метод initialize в классе A должен иметь самый строгий модификатор доступа.
@@ -24,12 +21,12 @@ public class Solution {
     public static class A {
         private int f1 = 7;
 
-        private A(int f1) {
+        public A(int f1) {
             this.f1 = f1;
             initialize();
         }
 
-        protected void initialize() {
+        private void initialize() {
             System.out.println(f1);
         }
     }
